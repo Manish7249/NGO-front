@@ -1,44 +1,59 @@
-
-import hero from "../../assets/landingPageImage/hero.png"; 
+import heroBg from "../../assets/landingPageImage/hero.png"; 
 
 const Hero = () => {
   return (
-    // Navbar Logo ke niche align karne ke liye pl-10
-    // Right wall se chipkane ke liye pr-0
-    // py-14 se upar-niche ka gap manage kiya hai
-    <section className="bg-white overflow-hidden pl-10 pr-0 py-8 md:py-14">
-      <div className="flex flex-col md:flex-row items-center w-full">
-        
-        {/* LEFT TEXT CONTENT - Width 35% rakha hai taaki image ke liye 65% jagah bache */}
-        <div className="w-full md:w-[35%] flex flex-col items-start z-10">
-          <h1 className="font-bold tracking-tight leading-[1.1]">
-            <span className="text-[#1a1a1a] text-[32px] md:text-[42px] lg:text-[50px] block">
+    // 'mb-20' niche margin ke liye, 'h-screen' poori screen cover karne ke liye
+    <section className="relative w-full h-[90vh] md:h-screen flex items-center overflow-hidden mb-20">
+      
+      {/* 1. BACKGROUND IMAGE - Object cover ensures it fills the screen */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroBg} 
+          alt="Hands Together Background" 
+          className="w-full h-full object-cover brightness-[0.75] contrast-110" 
+        />
+        {/* Subtle dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/30"></div>
+      </div>
+
+      {/* 2. CONTENT AREA - Left Aligned with Navbar Logo */}
+      <div className="relative z-10 w-full px-10 md:px-16 lg:px-24 pt-20">
+        <div className="max-w-[850px]">
+          
+          {/* HEADING - Tight tracking and specific sizes */}
+          <h1 className="font-extrabold tracking-tighter leading-[1.05] mb-4">
+            <span className="text-white text-[48px] md:text-[65px] lg:text-[85px] block">
               Together,
             </span>
-            <span className="text-[#22c55e] text-[32px] md:text-[42px] lg:text-[50px] block whitespace-nowrap">
+            <span className="text-[#22c55e] text-[48px] md:text-[65px] lg:text-[85px] block">
               We Create Change.
             </span>
           </h1>
-          
-          <button className="mt-8 px-6 py-2.5 bg-[#22c55e] text-white font-bold rounded-md hover:bg-[#1ca850] transition-all text-[16px] shadow-sm">
-            Donate Now
-          </button>
-        </div>
 
-        {/* RIGHT IMAGE CONTENT - Iska width 65% kar diya hai size badhane ke liye */}
-        <div className="w-full md:w-[65%] flex justify-end mt-12 md:mt-0">
-          <div className="w-full flex justify-end">
-            <img 
-              src={hero} 
-              alt="Volunteering Illustration" 
-              // scale-125 se image kafi badi (extra 300px width/150px height feel) dikhegi
-              // origin-right se image hamesha right wall se chipki rahegi
-              className="w-full h-auto object-contain transform scale-110 md:scale-125 lg:scale-100 origin-right translate-x-2"
-            />
+          {/* DESCRIPTION - Clean white subtext */}
+          <p className="text-white/95 text-[17px] md:text-[19px] lg:text-[22px] font-medium leading-[1.4] max-w-[650px] mb-12">
+            Together, we can build a better tomorrow for everyone. 
+            Your support brings hope, changes lives and creates a brighter future.
+          </p>
+
+          {/* BUTTONS GROUP - Standard sizing and alignment */}
+          <div className="flex flex-wrap items-center gap-6">
+            {/* Donate Now - Solid Green */}
+            <button className="px-10 py-3.5 bg-[#22c55e] text-white font-bold rounded-lg text-[17px] 
+                               hover:bg-green-600 transition-all active:scale-95 shadow-md">
+              Donate Now
+            </button>
+            
+            {/* Explore Campaign - Outline with thick border */}
+            <button className="px-10 py-3.5 bg-transparent border-[2.5px] border-white text-white font-bold 
+                               rounded-lg text-[17px] hover:bg-white/15 transition-all active:scale-95">
+              Explore Campaign
+            </button>
           </div>
-        </div>
 
+        </div>
       </div>
+
     </section>
   );
 };

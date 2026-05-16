@@ -1,10 +1,11 @@
-import React from 'react';
 import Navbar from '../components/LandingPage/Navbar';
 import Hero from '../components/LandingPage/Hero';
 import Stats from '../components/LandingPage/Stats';
 import Categories from '../components/LandingPage/Categories'
+import FeaturedCampaigns from '../components/LandingPage/FeaturedCampaigns';
 import CampaignBanner from '../components/LandingPage/CampaignBanner';
-import TopNGOs from '../components/LandingPage/TopNGOs';
+import WhySupportUs from '../components/LandingPage/WhySupportUs';
+import TrustedNGOs from '../components/LandingPage/TrustedNGOs';
 import Footer from '../components/LandingPage/Footer';
 
 const LandingPage = () => {
@@ -16,7 +17,9 @@ const LandingPage = () => {
         <CampaignBanner />
         <Stats />
         <Categories />
-        <TopNGOs />
+        <FeaturedCampaigns />
+        <WhySupportUs />
+        <TrustedNGOs />
       </main>
       <Footer />
     </div>

@@ -1,17 +1,41 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between items-center px-10 py-4 bg-white shadow-sm sticky top-0 z-50">
-      <div className="text-2xl font-bold text-green-600">Logo</div>
-      <div className="hidden md:flex space-x-8 font-medium text-gray-600">
-        <a href="#" className="text-green-600">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact Us</a>
+    // 'fixed' aur 'left-1/2' se navbar image ke upar float karega aur center mein rahega
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] z-50 
+                    bg-black/30 backdrop-blur-md border border-white/10 
+                    px-8 py-3 rounded-full flex justify-between items-center shadow-2xl">
+      
+      {/* Logo Section */}
+      <div className="text-2xl font-bold text-white tracking-wider">
+        <Link to="/">LOGO</Link>
       </div>
-      <div className="flex space-x-4">
-        <button className="px-5 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">Login</button>
-        <button className="px-5 py-2 border border-green-600 text-green-600 rounded-md hover:bg-green-50 transition">Register</button>
+      
+      {/* Navigation Links - Desktop */}
+      <div className="hidden md:flex items-center space-x-10 font-medium text-white/90">
+        <Link to="/" className="hover:text-green-400 transition-colors">Home</Link>
+        <Link to="/about" className="hover:text-green-400 transition-colors">About</Link>
+        <Link to="/help" className="hover:text-green-400 transition-colors">Help Desk</Link>
+      </div>
+
+      {/* Auth Buttons */}
+      <div className="flex items-center space-x-4">
+        <Link 
+          to="/login" 
+          className="px-6 py-2 bg-[#10b981] text-white rounded-lg font-bold 
+                     hover:bg-green-600 transition-all active:scale-95 shadow-lg"
+        >
+          Login
+        </Link>
+
+        <Link 
+          to="/register" 
+          className="hidden sm:block px-6 py-2 bg-[#10b981] text-white rounded-lg font-bold 
+                     hover:bg-green-600 transition-all active:scale-95 shadow-lg"
+        >
+          Register
+        </Link>
       </div>
     </nav>
   );

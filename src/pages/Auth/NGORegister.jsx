@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import Stepper from '../components/Stepper';
-import BasicDetails from '../components/Steps/BasicDetails';
-import LegalInfo from '../components/Steps/LegalInfo';
-import BankDetails from '../components/Steps/BankDetails';
-import Payment from '../components/Steps/Payment';
-import ProfileSetup from '../components/Steps/ProfileSetup';
-import Preview from '../components/Steps/Preview';
+import Stepper from '../../components/Stepper';
+import BasicDetails from '../../components/Steps/BasicDetails';
+import LegalInfo from '../../components/Steps/LegalInfo';
+import BankDetails from '../../components/Steps/BankDetails';
+import Payment from '../../components/Steps/Payment';
+import ProfileSetup from '../../components/Steps/ProfileSetup';
+import Preview from '../../components/Steps/Preview';
 
 const RegisterNGO = () => {
   const [currentStep, setCurrentStep] = useState(1);

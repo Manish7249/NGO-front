@@ -1,85 +1,44 @@
-// import React from 'react';
-// // Maan lo tumne ye image is path pe save ki hai
-// import campaignImg from "../../assets/landingPageImage/shiksha-banner.png"; 
-
-// const CampaignBanner = () => {
-//   return (
-//     <div className="px-6 md:px-16 lg:px-24 py-10">
-//       {/* Main Container */}
-//       <div className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl group">
-        
-//         {/* Background Image */}
-//         <img 
-//           src={campaignImg} 
-//           alt="Shiksha Foundation" 
-//           className="absolute inset-0 w-full h-full object-cover"
-//         />
-
-//         {/* Slanted Overlay (The Dark Part on Left) */}
-//         {/* 'clip-path' se humne wo tircha (slanted) design banaya hai */}
-//         <div 
-//           className="absolute inset-0 bg-black/70 md:bg-black/60 w-full md:w-[60%] lg:w-[50%]"
-//           style={{ clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)' }}
-//         ></div>
-
-//         {/* Content Area */}
-//         <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 text-white z-10">
-//           <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-//             Shiksha Foundation
-//           </h2>
-//           <p className="text-lg md:text-2xl font-semibold mt-2 opacity-90">
-//             Build a New Learning Center
-//           </p>
-          
-//           {/* Button */}
-//           <button className="mt-8 w-fit px-8 py-3 bg-[#4cae4f] hover:bg-[#439a46] text-white font-bold text-xl rounded-xl transition-all shadow-lg active:scale-95">
-//             Donate Now
-//           </button>
-//         </div>
-
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CampaignBanner;
-
-
-
-import React from 'react';
-// Image path sahi se check kar lena
-import campaignImg from "../../assets/landingPageImage/shiksha-banner.png"; 
+import campaignImg from "../../assets/landingPageImage/shiksha-image.png"; 
 
 const CampaignBanner = () => {
   return (
-    // Section me w-full aur koi padding/margin nahi hai taaki ye wall-to-wall dikhe
-    <section className="w-full relative overflow-hidden h-[250px] md:h-[350px] lg:h-[375px]">
+    // Section wall-to-wall hai, koi rounded corners nahi
+    <section className="w-full relative overflow-hidden h-[220px] md:h-[300px] lg:h-[350px] bg-[#1a1a1a]">
       
-      {/* Background Image - Poori width aur height cover karegi */}
-      <img 
-        src={campaignImg} 
-        alt="Shiksha Foundation Campaign" 
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {/* 1. Background Image - Right side me aligned */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <img 
+          src={campaignImg} 
+          alt="Campaign" 
+          // object-right ensure karega ki bache ka chehra saaf dikhe
+          className="w-full h-full object-cover object-right lg:object-[right_center]"
+        />
+      </div>
 
-      {/* Slanted Dark Overlay (Tircha design) */}
-      {/* Isme koi border radius nahi hai aur ye left wall se chipka hai */}
+      {/* 2. SOLID BLACK SLANTED OVERLAY - 'Side sarka diya' width kam karke */}
       <div 
-        className="absolute inset-0 bg-black/75 md:bg-black/60 w-full md:w-[65%] lg:w-[50%]"
-        style={{ clipPath: 'polygon(0 0, 100% 0, 82% 100%, 0% 100%)' }}
+        className="absolute inset-0 bg-[#1a1a1a] w-full md:w-[55%] lg:w-[42%] z-10"
+        style={{ 
+          // Sharp slant angle as per design
+          clipPath: 'polygon(0 0, 100% 0, 82% 100%, 0% 100%)' 
+        }}
       ></div>
 
-      {/* Content Area - Internal padding 'px-10' navbar ke logo se align karne ke liye */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-10 text-white">
-        <h2 className="text-[28px] md:text-[45px] lg:text-[55px] font-bold leading-tight">
+      {/* 3. CONTENT AREA - Text aur Button black part ke andar */}
+      <div className="relative z-20 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 text-white">
+        
+        {/* Title: Size chhota kiya hai jaisa tune manga tha (36px desktop par) */}
+        <h2 className="text-[22px] md:text-[30px] lg:text-[36px] font-bold leading-tight tracking-tight whitespace-nowrap">
           Shiksha Foundation
         </h2>
-        <p className="text-[18px] md:text-[24px] lg:text-[30px] font-bold mt-1">
-          Build a New Learning Center
+        
+        {/* Description: 2 lines me wrapping with smaller font */}
+        <p className="text-[14px] md:text-[17px] lg:text-[19px] font-medium mt-2 leading-snug opacity-95 max-w-[200px] md:max-w-[350px] lg:max-w-[420px]">
+          Empowering lives through the light of <br /> education
         </p>
         
-        {/* Donate Now Button - Exact green shade aur bold look */}
-        <button className="mt-8 w-fit px-8 py-2.5 bg-[#4cae4f] hover:bg-[#439a46] text-white font-bold text-xl rounded-lg transition-all shadow-md active:scale-95">
+        {/* Donate Now Button - Thoda compact aur exact green */}
+        <button className="mt-6 w-fit px-7 py-2 bg-[#44a02e] hover:bg-[#3d8d28] text-white font-bold text-lg rounded-lg transition-all shadow-md active:scale-95">
           Donate Now
         </button>
       </div>
