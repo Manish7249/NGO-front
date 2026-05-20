@@ -43,7 +43,8 @@ const RegisterNGO = () => {
           )}
 
           {currentStep === 6 && (
-            <Preview onBack={handleBack} onSubmit={() => alert("Registration Submitted!")} />
+            // <Preview onBack={handleBack} onSubmit={() => alert("Registration Submitted!")} />
+            <Preview onBack={handleBack}  />
           )}
         </div>
         

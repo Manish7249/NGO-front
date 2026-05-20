@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="hidden md:flex items-center space-x-10 font-medium text-white/90">
         <Link to="/" className="hover:text-green-400 transition-colors">Home</Link>
         <Link to="/about" className="hover:text-green-400 transition-colors">About</Link>
-        <Link to="/help" className="hover:text-green-400 transition-colors">Help Desk</Link>
+        <Link to="/help-desk" className="hover:text-green-400 transition-colors">Help Desk</Link>
       </div>
 
       {/* Auth Buttons */}

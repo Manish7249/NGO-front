@@ -23,7 +23,7 @@ const RoleSelection = () => {
       {/* Navbar - Navbar Fixed hai isliye mt-20 ki jagah pt-20 use kiya hai */}
       <Navbar />
 
-      <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gray-50/30 pt-25">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gray-50/30 pt-27">
         
         {/* Heading Section */}
         <div className="text-center mb-12">
