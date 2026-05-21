@@ -6,6 +6,7 @@ import NGOLogin from './pages/Auth/NGOLogin';
 import OTPVerification from './pages/Auth/OTPVerification';
 import NGORegister from './pages/Auth/NGORegister';
 import DonorRegister from './pages/Auth/DonorRegister';
+import AdminLogin from './pages/Auth/AdminLogin'
 import HelpDesk from './pages/HelpDesk';
 import RefundRequest from './pages/RefundRequest';
 
@@ -23,7 +24,18 @@ import EventDetails from './pages/NGODashboard/EventDetails';
 import EventInvitation from './pages/NGODashboard/EventInvitation';
 import ProfilePage from './pages/NGODashboard/ProfilePage';
 
+// Admin Dashboard Components
+import AdminLayout from './pages/AdminDashboard/AdminLayout';
+import AdminDashboardHome from './pages/AdminDashboard/AdminDashboardHome';
+import AllNGOs from './pages/AdminDashboard/AllNGOs';
+import NGOVerification from './pages/AdminDashboard/NGOVerification';
+import NGOPayment from './pages/AdminDashboard/NGOPayment';
+import RejectedNGOs from './pages/AdminDashboard/RejectedNGOs';
+import NGOReviewDetail from './pages/AdminDashboard/NGOReviewDetail';
+import AdminNGODetail from './pages/AdminDashboard/AdminNGODetail';
+import AdminCampaignDetail from './pages/AdminDashboard/AdminCampaignDetail';
 import './App.css';
+
 
 function App() {
   return (
@@ -45,6 +57,29 @@ function App() {
         
         <Route path="/register/donor" element={<DonorRegister />} />
         <Route path="/register/ngo" element={<NGORegister />} />
+
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboardHome />} />
+          {/* <Route path="all-ngos" element={<AllNGOs />} /> */}
+           
+          <Route path="all-ngos">
+            <Route index element={<AllNGOs />} />
+            <Route path="ngo-verification" element={<NGOVerification />} />
+            <Route path="ngo-verification/detail" element={<NGOReviewDetail />} />
+            <Route path="details" element={<AdminNGODetail />} />
+            <Route path="details/campaign-details" element={<AdminCampaignDetail />} />
+            <Route path="ngo-payment" element={<NGOPayment />} />
+            <Route path="rejected-ngos" element={<RejectedNGOs />} />
+          </Route>
+
+          <Route path="donors" element={<div>Donors Page</div>} />
+          <Route path="rating" element={<div>Rating Page</div>} />
+          <Route path="queries" element={<div>Queries Page</div>} />
+          <Route path="profile" element={<div>Profile page</div>} />
+        </Route>
 
         <Route path="/ngo" element={<NGOLayout />}>
           {/* Index route: /ngo hit karte hi /ngo/dashboard par bhej dega */}
@@ -75,7 +110,6 @@ function App() {
           </Route>
 
           <Route path="profile" element={<ProfilePage />} />
-
         </Route>
 
         {/* 404 Redirect (Optional) */}
