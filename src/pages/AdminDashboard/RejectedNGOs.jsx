@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const RejectedNGOs = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('Rejected');
 
   const rejectedList = [
@@ -80,7 +82,10 @@ const RejectedNGOs = () => {
                   </td>
 
                   {/* Action (Light Blue Button) */}
-                  <td className="py-7 px-8 text-center">
+                  <td
+                    onClick={() => navigate('/admin/all-ngos/rejected-ngos/detail')}
+                    className="py-7 px-8 text-center"
+                  >
                     <button className="bg-[#dbeafe] text-[#3b82f6] px-6 py-2 rounded-lg text-sm font-bold hover:bg-[#bfdbfe] transition-all shadow-sm">
                       Review
                     </button>

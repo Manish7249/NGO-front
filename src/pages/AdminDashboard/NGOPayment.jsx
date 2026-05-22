@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NGOPayment = () => {
   const paymentHistory = [
     { id: 1, name: "Green Earth Foundation", regNo: "NGO -1099-2024", status: "Paid", date: "3 May 2026", amount: "₹ 999" },

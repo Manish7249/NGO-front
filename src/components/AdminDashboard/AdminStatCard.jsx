@@ -1,4 +1,3 @@
-import React from 'react';
 
 const AdminStatCard = ({ title, value, icon, colorClass, iconBg }) => {
   return (

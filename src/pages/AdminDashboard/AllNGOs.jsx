@@ -1,4 +1,3 @@
-import React from 'react';
 import { Search, Package, Calendar, Users, Star } from 'lucide-react';
 import shikshaLogo from '../../assets/landingPageImage/shiksha-foundation.png';
 import smileLogo from '../../assets/landingPageImage/smile-foundation.png';

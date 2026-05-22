@@ -28,14 +28,22 @@ import ProfilePage from './pages/NGODashboard/ProfilePage';
 import AdminLayout from './pages/AdminDashboard/AdminLayout';
 import AdminDashboardHome from './pages/AdminDashboard/AdminDashboardHome';
 import AllNGOs from './pages/AdminDashboard/AllNGOs';
+import AllDonors from './pages/AdminDashboard/AllDonors';
+import DonorProfile from './pages/AdminDashboard/DonorProfile';
+import DonationDetail from './pages/AdminDashboard/DonationDetail';
+import DonorAllTransactions from './pages/AdminDashboard/DonorAllTransactions';
+import QueriesPage from './pages/AdminDashboard/QueriesPage';
+import QueryDetails from './pages/AdminDashboard/QueryDetails';
+import RatingPage from './pages/AdminDashboard/RatingPage';
 import NGOVerification from './pages/AdminDashboard/NGOVerification';
 import NGOPayment from './pages/AdminDashboard/NGOPayment';
 import RejectedNGOs from './pages/AdminDashboard/RejectedNGOs';
 import NGOReviewDetail from './pages/AdminDashboard/NGOReviewDetail';
 import AdminNGODetail from './pages/AdminDashboard/AdminNGODetail';
 import AdminCampaignDetail from './pages/AdminDashboard/AdminCampaignDetail';
+import AdminEventDetail from './pages/AdminDashboard/AdminEventDetail';
+import RefundApplicationDetail from './pages/AdminDashboard/RefundApplicationDetail';
 import './App.css';
-
 
 function App() {
   return (
@@ -71,14 +79,19 @@ function App() {
             <Route path="ngo-verification/detail" element={<NGOReviewDetail />} />
             <Route path="details" element={<AdminNGODetail />} />
             <Route path="details/campaign-details" element={<AdminCampaignDetail />} />
+            <Route path="details/event-details" element={<AdminEventDetail />} />
             <Route path="ngo-payment" element={<NGOPayment />} />
             <Route path="rejected-ngos" element={<RejectedNGOs />} />
+            <Route path="rejected-ngos/detail" element={<RefundApplicationDetail />} />
           </Route>
 
-          <Route path="donors" element={<div>Donors Page</div>} />
-          <Route path="rating" element={<div>Rating Page</div>} />
-          <Route path="queries" element={<div>Queries Page</div>} />
-          <Route path="profile" element={<div>Profile page</div>} />
+          <Route path="donors" element={<AllDonors />} />
+          <Route path="donors/profile" element={<DonorProfile />} />
+          <Route path="donors/profile/all-transactions" element={<DonorAllTransactions />} />
+          <Route path="donors/profile/transaction-detail" element={<DonationDetail />} />
+          <Route path="rating" element={<RatingPage />} />
+          <Route path="queries" element={<QueriesPage />} />
+          <Route path="queries/details" element={<QueryDetails />} />
         </Route>
 
         <Route path="/ngo" element={<NGOLayout />}>
@@ -101,6 +114,7 @@ function App() {
           </Route>
 
           <Route path="donations" element={<DonationsPage />} />
+          
 
           <Route path="events" >
             <Route index element={<EventsPage />} />
