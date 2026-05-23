@@ -6,6 +6,7 @@ import NGOLogin from './pages/Auth/NGOLogin';
 import OTPVerification from './pages/Auth/OTPVerification';
 import NGORegister from './pages/Auth/NGORegister';
 import DonorRegister from './pages/Auth/DonorRegister';
+import LegalInformation from './pages/Auth/LegalInformation';
 import AdminLogin from './pages/Auth/AdminLogin'
 import HelpDesk from './pages/HelpDesk';
 import RefundRequest from './pages/RefundRequest';
@@ -43,6 +44,15 @@ import AdminNGODetail from './pages/AdminDashboard/AdminNGODetail';
 import AdminCampaignDetail from './pages/AdminDashboard/AdminCampaignDetail';
 import AdminEventDetail from './pages/AdminDashboard/AdminEventDetail';
 import RefundApplicationDetail from './pages/AdminDashboard/RefundApplicationDetail';
+
+// Donor Dashboard Components
+import DonorLayout from './pages/DonorDashboard/DonorLayout';
+import DonorDashboard from './pages/DonorDashboard/DonorDashboard';
+import MyDonations from './pages/DonorDashboard/MyDonations';
+import DonorProfileNew from './pages/DonorDashboard/DonorProfileNew';
+import DonationCampaignDetails from './pages/DonorDashboard/DonationCampaignDetails';
+import DonationEventDetails from './pages/DonorDashboard/DonationEventDetails';
+
 import './App.css';
 
 function App() {
@@ -64,6 +74,7 @@ function App() {
         <Route path="/login/ngo/verify-otp" element={<OTPVerification />} />
         
         <Route path="/register/donor" element={<DonorRegister />} />
+        <Route path="/register/donor/legal-info" element={<LegalInformation />} />
         <Route path="/register/ngo" element={<NGORegister />} />
 
         <Route path="/admin/login" element={<AdminLogin />} />
@@ -126,6 +137,21 @@ function App() {
           <Route path="profile" element={<ProfilePage />} />
         </Route>
 
+          {/* Baaki Login/Register routes... */}
+          <Route path="/donor" element={<DonorLayout />}>
+            {/* Jab koi sirf /donor par jaye, toh dashboard dikhe (Index route) */}
+            <Route index element={<DonorDashboard />} /> 
+            
+            {/* Saare tabs ke routes */}
+            <Route path="dashboard" element={<DonorDashboard />} />
+            <Route path="donations" element={<MyDonations />} />
+            <Route path="donations/donation-campaign-detail" element={<DonationCampaignDetails />} />
+            <Route path="donations/donation-event-detail" element={<DonationEventDetails />} />
+            <Route path="alerts" element={<div className="p-10">Alerts Page</div>} />
+            <Route path="donate" element={<div className="p-10">Donate Now Page</div>} />
+            <Route path="profile" element={<DonorProfileNew />} />
+          </Route>
+        
         {/* 404 Redirect (Optional) */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

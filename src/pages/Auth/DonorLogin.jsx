@@ -1,7 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import bgImage from '../../assets/landingPageImage/bg-image.png';
 
 const DonorLogin = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate('/donor/dashboard');
+  }
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden font-sans">
       
@@ -24,7 +31,7 @@ const DonorLogin = () => {
           Donor Login
         </h1>
 
-        <form className="w-full max-w-[370px] space-y-4 md:space-y-6">
+        <form className="w-full max-w-[370px] space-y-4 md:space-y-6" onSubmit={handleLogin}>
           
           {/* User Name Field */}
           <div className="flex flex-col items-start space-y-1.5">
