@@ -49,11 +49,22 @@ import RefundApplicationDetail from './pages/AdminDashboard/RefundApplicationDet
 import DonorLayout from './pages/DonorDashboard/DonorLayout';
 import DonorDashboard from './pages/DonorDashboard/DonorDashboard';
 import MyDonations from './pages/DonorDashboard/MyDonations';
+import DonorAlerts from './pages/DonorDashboard/DonorAlerts';
+import DonateNowEducation from './pages/DonorDashboard/DonateNowEducation';
+import DonateView from './pages/DonorDashboard/DonateView';
+import DonateCampaignDetail from './pages/DonorDashboard/DonateCampaignDetail';
+import DonateEventDetail from './pages/DonorDashboard/DonateEventDetail';
+import CampaignPayment from './pages/DonorDashboard/CampaignPayment';
+import EventPayment from './pages/DonorDashboard/EventPayment';
+import CampaignPaymentSuccess from './pages/DonorDashboard/CampaignPaymentSuccess';
+import EventPaymentSuccess from './pages/DonorDashboard/EventPaymentSuccess';
+import InvitationPage from './pages/DonorDashboard/InvitationPage';
 import DonorProfileNew from './pages/DonorDashboard/DonorProfileNew';
 import DonationCampaignDetails from './pages/DonorDashboard/DonationCampaignDetails';
 import DonationEventDetails from './pages/DonorDashboard/DonationEventDetails';
 
 import './App.css';
+
 
 function App() {
   return (
@@ -147,8 +158,17 @@ function App() {
             <Route path="donations" element={<MyDonations />} />
             <Route path="donations/donation-campaign-detail" element={<DonationCampaignDetails />} />
             <Route path="donations/donation-event-detail" element={<DonationEventDetails />} />
-            <Route path="alerts" element={<div className="p-10">Alerts Page</div>} />
-            <Route path="donate" element={<div className="p-10">Donate Now Page</div>} />
+            <Route path="alerts" element={<DonorAlerts />} />
+            <Route path="alerts/invitation" element={<InvitationPage />} />
+            <Route path="donate" element={<DonateNowEducation />} />
+            <Route path="donate/education" element={<DonateNowEducation />} />
+            <Route path="donate/education/view" element={<DonateView />} />
+            <Route path="donate/education/view/campaign-detail" element={<DonateCampaignDetail />} />
+            <Route path="donate/education/view/event-detail" element={<DonateEventDetail />} />
+            <Route path="donate/education/view/campaign-detail/campaign-payment" element={<CampaignPayment />} />
+            <Route path="donate/education/view/event-detail/event-payment" element={<EventPayment />} />
+            <Route path="donate/education/view/campaign-detail/campaign-payment/success" element={<CampaignPaymentSuccess />} />
+            <Route path="donate/education/view/event-detail/event-payment/success" element={<EventPaymentSuccess />} />
             <Route path="profile" element={<DonorProfileNew />} />
           </Route>
         

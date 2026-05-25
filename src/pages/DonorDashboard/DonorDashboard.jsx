@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import DonorStats from '../../components/DonorDashboard/DonorStats';
@@ -14,10 +14,11 @@ const chartData = [
 ];
 
 const DonorDashboard = () => {
+  const navigate = useNavigate(); // 🟢 2. navigate function initialize kiya
   const [activeTab, setActiveTab] = useState('Campaigns');
 
-  // Dummy Table Data
-  const tableData = [
+  // Dummy Table Data for Campaigns
+  const campaignData = [
     { 
         id: 1, 
         img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=250&fit=crop", 
@@ -47,6 +48,20 @@ const DonorDashboard = () => {
     },
   ];
 
+  const eventData = [...campaignData];
+  const displayData = activeTab === 'Campaigns' ? campaignData : eventData;
+
+  // 🟢 3. Navigation Logic function
+  const handleViewDetails = (item) => {
+    if (activeTab === 'Campaigns') {
+      // Campaigns ke liye route
+      navigate('/donor/donations/donation-campaign-detail', { state: { item } });
+    } else {
+      // Events ke liye route
+      navigate('/donor/donations/donation-event-detail', { state: { item } });
+    }
+  };
+
   return (
     <div className="p-4 md:p-10 space-y-8 w-full max-w-[1200px] mx-auto animate-fadeIn">
       
@@ -54,10 +69,8 @@ const DonorDashboard = () => {
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Welcome Back, Akay</h1>
       </div>
 
-      {/* Stats Section */}
       <DonorStats />
 
-      {/* Graph Section */}
       <div className="bg-white p-6 rounded-[32px] shadow-sm border border-gray-100">
         <div className="flex justify-between items-center mb-6">
           <h3 className="font-bold text-gray-800 text-lg">Revenue Overview</h3>
@@ -86,11 +99,9 @@ const DonorDashboard = () => {
         </div>
       </div>
 
-      {/* --- RECENT DONATIONS START --- */}
       <div className="space-y-6">
         <h3 className="font-bold text-gray-800 text-lg">Recent Donations</h3>
 
-        {/* Tabs and View All Link */}
         <div className="flex items-center justify-between border-b border-gray-200">
           <div className="flex gap-8">
             {['Campaigns', 'Events'].map((tab) => (
@@ -104,17 +115,15 @@ const DonorDashboard = () => {
               </button>
             ))}
           </div>
-          <button className="text-gray-400 font-bold text-sm hover:text-gray-600 mb-4">View All</button>
+          <button onClick={() => navigate('/donor/donations')} className="text-gray-400 font-bold text-sm hover:text-gray-600 mb-4">View All</button>
         </div>
 
-        {/* Table Container */}
         <div className="bg-white rounded-xl md:rounded-2xl shadow-[0px_8px_24px_rgba(0,0,0,0.05)] border border-gray-100 overflow-hidden">
                 <div className="overflow-x-auto">
-                  {/* Table Layout Fixed for better spacing control */}
                   <table className="w-full text-left border-collapse min-w-[800px] table-fixed">
                     <thead>
                       <tr className="text-[11px] md:text-[12px] uppercase text-gray-400 font-bold border-b border-gray-50 bg-gray-50/30">
-                        <th className="w-[35%] pl-6 md:pl-10 py-5">Campaign</th>
+                        <th className="w-[35%] pl-6 md:pl-10 py-5">{activeTab === 'Campaigns' ? 'Campaign' : 'Event'}</th>
                         <th className="w-[15%] px-4 py-5">Amount</th>
                         <th className="w-[15%] px-4 py-5">Date</th>
                         <th className="w-[15%] px-4 py-5">Status</th>
@@ -122,15 +131,14 @@ const DonorDashboard = () => {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-50">
-                      {tableData.map((item) => (
+                      {displayData.map((item) => (
                         <tr key={item.id} className="hover:bg-gray-50/60 transition-colors group">
-                          {/* Campaign Column */}
                           <td className="pl-6 md:pl-10 py-5">
                             <div className="flex items-center gap-4">
                               <img 
                                 src={item.img} 
                                 className="w-14 h-11 md:w-20 md:h-14 rounded-lg md:rounded-lg object-cover shadow-sm shrink-0" 
-                                alt="campaign" 
+                                alt={activeTab} 
                               />
                               <div className="min-w-0">
                                 <p className="text-sm font-bold text-gray-800 truncate leading-tight mb-1">
@@ -143,17 +151,14 @@ const DonorDashboard = () => {
                             </div>
                           </td>
         
-                          {/* Amount Column */}
                           <td className="px-4 py-5">
                             <span className="text-sm md:text-base font-bold text-gray-700">₹{item.amount}</span>
                           </td>
         
-                          {/* Date Column */}
                           <td className="px-4 py-5 text-sm text-gray-500 font-medium">
                             {item.date}
                           </td>
         
-                          {/* Status Column */}
                           <td className="px-4 py-5">
                             <span className={`inline-flex px-3 py-1 rounded-full text-[10px] md:text-[11px] font-bold ${
                               item.status === 'Active' 
@@ -164,9 +169,12 @@ const DonorDashboard = () => {
                             </span>
                           </td>
         
-                          {/* View Details Column */}
                           <td className="pr-6 md:pr-10 py-5 text-right">
-                            <button className="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-bold text-green-600 border border-green-100 px-3 md:px-5 py-2 rounded-xl hover:bg-green-600 hover:text-white transition-all shadow-sm active:scale-95 group-hover:border-green-600">
+                            {/* 🟢 4. Button par onClick listener add kiya */}
+                            <button 
+                              onClick={() => handleViewDetails(item)}
+                              className="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-bold text-green-600 border border-green-100 px-3 md:px-5 py-2 rounded-xl hover:bg-green-600 hover:text-white transition-all shadow-sm active:scale-95 group-hover:border-green-600"
+                            >
                               View Details <ChevronRight size={14} strokeWidth={2.5} />
                             </button>
                           </td>
@@ -177,8 +185,6 @@ const DonorDashboard = () => {
                 </div>
               </div>
       </div>
-      {/* --- RECENT DONATIONS END --- */}
-
     </div>
   );
 };
