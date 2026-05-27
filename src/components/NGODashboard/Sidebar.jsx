@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { LayoutDashboard, Megaphone, HandCoins, Calendar, User, LogOut, Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // useNavigate add kiya
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // Navigation ke liye hook initialize kiya
   const [isOpen, setIsOpen] = useState(false); // Mobile menu toggle state
 
   const menuItems = [
@@ -14,6 +14,12 @@ const Sidebar = () => {
     { icon: <Calendar size={22} />, label: "Events", path: "/ngo/events" },
     { icon: <User size={22} />, label: "Profile", path: "/ngo/profile" },
   ];
+
+  // Logout function
+  const handleLogout = () => {
+    // Agar koi token delete karna ho toh yahan kar sakte hain
+    navigate('/'); // Landing page par bhej dega
+  };
 
   // Ye function Sidebar ka content render karega (Desktop aur Mobile dono ke liye same)
   const SidebarContent = () => (
@@ -49,7 +55,10 @@ const Sidebar = () => {
 
       {/* Logout Section */}
       <div className="p-6 border-t border-gray-50">
-        <div className="flex items-center gap-4 px-4 py-3 text-red-500 font-bold cursor-pointer hover:bg-red-50 rounded-xl transition-all active:scale-95">
+        <div 
+          onClick={handleLogout} // Click handle karne ke liye function call kiya
+          className="flex items-center gap-4 px-4 py-3 text-red-500 font-bold cursor-pointer hover:bg-red-50 rounded-xl transition-all active:scale-95"
+        >
           <LogOut size={22} />
           <span>Log out</span>
         </div>
