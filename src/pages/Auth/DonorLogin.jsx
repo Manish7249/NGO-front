@@ -1,13 +1,69 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import bgImage from '../../assets/landingPageImage/bg-image.png';
 
 const DonorLogin = () => {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    navigate('/donor/dashboard');
+  const [formData, setFormData] = useState({
+  email: '',
+  password: '',
+});
+
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   navigate('/donor/dashboard');
+  // }
+
+  const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+
+    const response = await fetch(
+      'http://localhost:3000/api/donor/login',
+      {
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify(formData),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+
+      // JWT token save
+      localStorage.setItem('token', data.token);
+
+      // User data save
+      localStorage.setItem(
+        'donor',
+        JSON.stringify(data.donor)
+      );
+
+      alert('Login Successful');
+
+      navigate('/donor/dashboard');
+
+    } else {
+
+      alert(data.message);
+
+    }
+
+  } catch (error) {
+
+    console.log(error);
+
+    alert('Server Error');
+
   }
+};
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden font-sans">
@@ -35,22 +91,40 @@ const DonorLogin = () => {
           
           {/* User Name Field */}
           <div className="flex flex-col items-start space-y-1.5">
-            <label className="text-gray-500 font-medium text-xs md:text-sm ml-1">User Name*</label>
-            <input 
+            <label className="text-gray-500 font-medium text-xs md:text-sm ml-1">Email*</label>
+            {/* <input 
               type="text" 
               placeholder="User Name" 
               className="w-full bg-white rounded-lg border border-gray-100 px-3 md:px-4 py-2 md:py-2.5 shadow-sm outline-none text-gray-700 text-sm md:text-base focus:ring-2 focus:ring-green-400 transition-all"
-            />
+            /> */}
+            <input
+  type="email"
+  placeholder="Email"
+  value={formData.email}
+  onChange={(e) =>
+    setFormData({ ...formData, email: e.target.value })
+  }
+  className="w-full bg-white rounded-lg border border-gray-100 px-3 md:px-4 py-2 md:py-2.5 shadow-sm outline-none text-gray-700 text-sm md:text-base focus:ring-2 focus:ring-green-400 transition-all"
+/>
           </div>
 
           {/* Password Field */}
           <div className="flex flex-col items-start space-y-1.5">
             <label className="text-gray-500 font-medium text-xs md:text-sm ml-1">Password*</label>
-            <input 
+            {/* <input 
               type="password" 
               placeholder="Password" 
               className="w-full bg-white rounded-lg border border-gray-100 px-3 md:px-4 py-2 md:py-2.5 shadow-sm outline-none text-gray-700 text-sm md:text-base focus:ring-2 focus:ring-green-400 transition-all"
-            />
+            /> */}
+            <input
+  type="password"
+  placeholder="Password"
+  value={formData.password}
+  onChange={(e) =>
+    setFormData({ ...formData, password: e.target.value })
+  }
+  className="w-full bg-white rounded-lg border border-gray-100 px-3 md:px-4 py-2 md:py-2.5 shadow-sm outline-none text-gray-700 text-sm md:text-base focus:ring-2 focus:ring-green-400 transition-all"
+/>
           </div>
 
           {/* Forgot Password - Aligned like the photo */}
@@ -63,7 +137,7 @@ const DonorLogin = () => {
           {/* Login Button - Matching Donor's Green color with responsive padding */}
           <button 
             type="submit"
-            className="w-full py-2.5 md:py-3 bg-[#3ec327] hover:bg-[#35a822] text-gray-800 font-bold rounded-lg text-base md:text-lg shadow-md transition-all active:scale-95 mt-2"
+            className="w-full py-2.5 md:py-3 bg-[#3ec327] hover:bg-[#35a822] text-white font-bold rounded-lg text-base md:text-lg shadow-md transition-all active:scale-95 mt-2"
           >
             Login
           </button>

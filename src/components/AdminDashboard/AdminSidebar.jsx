@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { 
   LayoutDashboard, 
   Megaphone, 
@@ -9,9 +8,12 @@ import {
   ChevronDown,
   Heart
 } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const AdminSidebar = () => {
+
+  const navigate = useNavigate();
+
   const location = useLocation();
 
   // Helper function: Exact path match ke liye (Main menus ke liye)
@@ -22,6 +24,13 @@ const AdminSidebar = () => {
 
   // Logic: Kya hum abhi 'All NGOs' section ke kisi bhi page par hain?
   const isAllNgosActive = location.pathname.startsWith('/admin/all-ngos');
+
+  const handleLogout = () => {
+
+  localStorage.removeItem('adminToken');
+
+  navigate('/');
+};
 
   return (
     <aside className="w-64 bg-white h-screen border-r border-gray-100 flex flex-col fixed left-0 top-0 z-40 font-sans">
@@ -119,7 +128,7 @@ const AdminSidebar = () => {
       </nav>
 
       <div className="p-6 border-t border-gray-50 text-left">
-        <button className="flex items-center gap-4 px-5 py-3 text-red-500 font-bold hover:bg-red-50 rounded-xl transition-all w-full active:scale-95">
+        <button onClick={handleLogout} className="flex items-center gap-4 px-5 py-3 text-red-500 font-bold hover:bg-red-50 rounded-xl transition-all w-full active:scale-95">
           <LogOut size={22} />
           <span className="text-[15px]">Log out</span>
         </button>
